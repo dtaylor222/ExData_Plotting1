@@ -21,15 +21,15 @@ testdf$Global_active_power <- as.numeric(testdf$Global_active_power)
 # noww we have got hte data that we want will have to create the R files
 # to produce the files that we want with base R pltting
 
-# 4 plots to be added to a 2 * 2 grid wiht upper margin
-par(mfrow = c(2,2))
-
 # device is png file 480 * 480 pixels
 png(filename = "plot4.png", width = 480, height = 480)
 
+# 4 plots to be added to a 2 * 2 grid with upper margin
+par(mfrow = c(2,2))
+
 # first sub plot is line plot of power against datetime
 plot(testdf$datntime, testdf$Global_active_power, type = "l",
-     xlab='', ylab='Global Active Power (kilowatts)')
+     xlab='', ylab='Global Active Power')
 
 # second sub-plot is datetime against voltage
 testdf$Voltage <- as.numeric(testdf$Voltage)
@@ -44,8 +44,9 @@ plot(testdf$datntime, testdf$Sub_metering_1, type ="l",
      ylab = 'Energy sub metering', xlab = '')
 lines(testdf$datntime,testdf$Sub_metering_2, type = "l", col = "red")
 lines(testdf$datntime, testdf$Sub_metering_3, type = "l", col = "blue")
-legend("topright", lty= 1, col = c("black","blue", "red"),
-       legend = c("Sub Metering 1", "Sub Metering 2","Sub Metering 3"))
+legend("topright", lty= 1, col = c("black","red", "blue"),
+       legend = c("Sub Metering 1", "Sub Metering 2","Sub Metering 3"),
+       bty = "n")
 
 # fourth sub-plot is global reactive power against datetime
 testdf$Global_reactive_power <- as.numeric(testdf$Global_reactive_power)
